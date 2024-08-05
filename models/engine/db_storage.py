@@ -97,7 +97,9 @@ class DBStorage:
         else:
             count = 0
             for cl in classes:
+                if isinstance(cl, str):
+                    cl = classes.get(cl)
                 # total = sum(self.__session.query(cl).count() for cl in classes)
-                number = self.__session.query(cl).count()
-                count += number
+                    number = self.__session.query(cl).count()
+                    count += number
             return count
