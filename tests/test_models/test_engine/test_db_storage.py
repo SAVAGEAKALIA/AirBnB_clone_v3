@@ -153,7 +153,10 @@ class TestFileStorage(unittest.TestCase):
 
     @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
     def test_get_with_valid_class_and_id_but_no_object_exists(self):
-        """Test get method with valid class and id, but object does not exist in database"""
+        """
+        Test get method with valid class and id,
+        but object does not exist in database
+        """
         # Create an object with a known id
         obj = State(name="Test State")
         models.storage.new(obj)
@@ -167,7 +170,10 @@ class TestFileStorage(unittest.TestCase):
 
     @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
     def test_get_with_nonexistent_class_as_string(self):
-        """Test get method with class as a string, but class does not exist in classes dictionary"""
+        """
+        Test get method with class as a string,
+        but class does not exist in classes dictionary
+        """
         db_storage = DBStorage()
         db_storage.reload()
 
@@ -181,7 +187,10 @@ class TestFileStorage(unittest.TestCase):
 
     @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
     def test_get_with_nonexistent_class_as_object(self):
-        """Test get method with class as a class object, but class does not exist in database"""
+        """
+        Test get method with class as a class object,
+        but class does not exist in database
+        """
         db_storage = DBStorage()
         db_storage.reload()
 
@@ -231,7 +240,10 @@ class TestFileStorage(unittest.TestCase):
 
     @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
     def test_count_with_class_with_no_objects(self):
-        """Test count method with a class that has no objects in the database"""
+        """
+        Test count method with a class that
+        has no objects in the database
+        """
         db_storage = DBStorage()
         db_storage.reload()
 
@@ -261,7 +273,7 @@ class TestFileStorage(unittest.TestCase):
         # Try to count objects using a valid class name but a non-existent id
         count = db_storage.count(State)
 
-        # Assert that the count is 1 (since only the object with known id exists)
+        # Assert that the count is1(since only the object with known id exists)
         self.assertEqual(count, 1)
 
         db_storage.close()
