@@ -79,7 +79,7 @@ class DBStorage:
         """ function to query all class objects and count them"""
         if cls is not None and id is not None:
             if isinstance(cls, str):
-                cls = classes[cls]
+                cls = classes.get(cls)
                 objs = self.__session.query(cls).filter_by(id=id).first()
             else:
                 objs = self.__session.query(cls).filter_by(id=id).first()
@@ -92,7 +92,7 @@ class DBStorage:
         """if cls is not None, return the number of objects in the cls"""
         if cls is not None:
             if isinstance(cls, str):
-                cls = classes[cls]
+                cls = classes.get(cls)
             return self.__session.query(cls).count()
         else:
             count = 0
