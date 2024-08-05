@@ -102,4 +102,6 @@ class DBStorage:
                 # total = sum(self.__session.query(cl).count() for cl in classes)
                     number = self.__session.query(cl).count()
                     count += number
+                else:
+                    count += self.__session.query(cl).count()
             return count
