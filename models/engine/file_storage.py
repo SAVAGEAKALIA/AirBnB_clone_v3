@@ -74,6 +74,10 @@ class FileStorage:
         return them in Filestorage engine
         """
         if cls is not None and id is not None:
+            if isinstance(cls, str):
+                cls = classes.get(cls)
+            else:
+                pass
             key = cls.__name__ + '.' + id
             if key in self.__objects:
                 # return self.__objects[key]
