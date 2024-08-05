@@ -73,15 +73,18 @@ class FileStorage:
         """ function to query class object with id
         return them in Filestorage engine
         """
+        if cls is None or id is None:
+            return None
+
         if cls is not None and id is not None:
             if isinstance(cls, str):
                 cls = classes.get(cls)
             else:
                 pass
-            key = cls.__name__ + '.' + id
-            if key in self.__objects:
-                # return self.__objects[key]
-                return self.__objects.get(key)
+
+        key = cls.__name__ + '.' + id
+        # return self.__objects[key]
+        return self.__objects.get(key)
 
     def count(self, cls=None):
         """ count number of objects of specific class in db
