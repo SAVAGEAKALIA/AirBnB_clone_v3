@@ -77,7 +77,15 @@ class FileStorage:
             return None
 
         if cls is not None and id is not None:
-            key = cls.__name__ + '.' + id
+            if isinstance(cls, str):
+                # cls = self.classes.get(cls)
+                if self.classes.get(cls) is None:
+                    # cls = globals()[cls]
+                    return None
+                else:
+                    cls = self.classes.get(cls)
+
+            key = f"{cls.__name__}.{id}"
             # return self.__objects[key]
             return self.__objects.get(key)
 
