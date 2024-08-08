@@ -6,10 +6,11 @@ Flask configuration for Api
 from flask import Flask, jsonify
 from models import storage
 from api.v1.views import app_views
+from flask_cors import CORS
 import os
 
 app = Flask(__name__)
-
+CORS(app, resources={r"/*": {"origins": "*"}})
 app.register_blueprint(app_views)
 
 

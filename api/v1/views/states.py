@@ -8,14 +8,14 @@ from models import storage
 from models.state import State
 
 
-@app_views.route('states', methods=['GET'])
+@app_views.route('states', strict_slashes=False, methods=['GET'])
 def get_all_states():
     """Returns all states objects"""
     states = storage.all(State)
     return jsonify([stat.to_dict() for stat in states.values()])
 
 
-@app_views.route('states/<state_id>', methods=['GET'])
+@app_views.route('states/<state_id>', strict_slashes=False, methods=['GET'])
 def get_state_by_id(state_id):
     """return state obj bid"""
     state_obj = storage.get(State, state_id)
@@ -24,18 +24,18 @@ def get_state_by_id(state_id):
     return state_obj.to_dict()
 
 
-@app_views.route('states/<state_id>', methods=['DELETE'])
+@app_views.route('states/<state_id>', strict_slashes=False, methods=['DELETE'])
 def delete_state(state_id):
     """delete state obj by id"""
     state_obj = storage.get(State, state_id)
     if state_obj is None:
-        return jsonify({"error": "Not found"}), 404
+        return jsonify({"error": "Not found"}), 400
     storage.delete(state_obj)
     storage.save()
     return jsonify({}), 200
 
 
-@app_views.route('/states', methods=['POST'])
+@app_views.route('/states', strict_slashes=False, methods=['POST'])
 def create_state():
     """Creates a State object"""
     if not request.is_json:
@@ -51,7 +51,7 @@ def create_state():
     return jsonify(new_state.to_dict()), 201
 
 
-@app_views.route('states/<state_id>', methods=['PUT'])
+@app_views.route('states/<state_id>', strict_slashes=False, methods=['PUT'])
 def update_state(state_id):
     """update state obj by id"""
     state_obj = storage.get(State, state_id)
