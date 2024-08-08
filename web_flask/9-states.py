@@ -12,7 +12,7 @@ app = Flask(__name__)
 @app.route('/states', strict_slashes=False)
 @app.route('/states/<state_id>', strict_slashes=False)
 def states(state_id=None):
-    """display the states.js and cities listed in alphabetical order"""
+    """display the states.py and cities listed in alphabetical order"""
     states = storage.all("State")
     if state_id is not None:
         state_id = 'State.' + state_id

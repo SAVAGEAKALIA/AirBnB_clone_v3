@@ -14,4 +14,8 @@ if storage_t == "db":
 else:
     from models.engine.file_storage import FileStorage
     storage = FileStorage()
-storage.reload()
+
+if storage:
+    storage.reload()
+else:
+    raise Exception("Failed to initialize storage")

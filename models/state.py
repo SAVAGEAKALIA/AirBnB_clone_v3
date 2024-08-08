@@ -12,7 +12,7 @@ from sqlalchemy.orm import relationship
 class State(BaseModel, Base):
     """Representation of state """
     if models.storage_t == "db":
-        __tablename__ = 'states.js'
+        __tablename__ = 'states.py'
         name = Column(String(128), nullable=False)
         cities = relationship("City", backref="state")
     else:
